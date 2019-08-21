@@ -1,11 +1,17 @@
 # Command Line Introduction
 
+<!-- MarkdownTOC -->
+
+- [Set up System](#set-up-system)
+- [Grabbing Data from the Web](#grabbing-data-from-the-web)
+- [Resources](#resources)
+
+<!-- /MarkdownTOC -->
+
 This is an introduction to Command Line Workshop from the School of AI. There is a [Command Line References] document included for your convenience.
 
-![Command Line Image](https://softcover.s3.amazonaws.com/636/learn_enough_command_line/images/figures/anatomy.png)
 
-
-
+<a id="set-up-system"></a>
 ## Set up System
 
 To ensure consistency, let's install the virtual machine from the [Learn Enough Command Line - 1.1 Introduction] section. For quick reference, the steps have been re-produced below:
@@ -54,15 +60,31 @@ $ ll -tr /usr/local/bin/csv*
 -rwxr-xr-x 1 root root 381 Jul  7 14:12 /usr/local/bin/csvclean
 ```
 
+
+<a id="grabbing-data-from-the-web"></a>
+## Grabbing Data from the Web
+
+There are a couple of tools we can use to grab data from the web.
+
+- [`Wget`]
+- [`cURL`]
+
+For a comparison, please take a look at [curl vs Wget].
+
+<a id="resources"></a>
 ## Resources
 
+- [Data Science at the Command Line]
 - [Learn Enough Command Line to be Dangerous]
 
 [//]: # (References)
-
 
 [Command Line References]: command_line_references.md
 [Learn Enough Command Line - 1.1 Introduction]: https://www.learnenough.com/command-line-tutorial/basics#sec-introduction
 [VirtualBox]: https://www.virtualbox.org/
 [Learn Enough Virtual Machine]: https://softcover-static.s3.amazonaws.com/LearnEnough-v.1.4.ova
+[`Wget`]: https://en.wikipedia.org/wiki/Wget
+[`cURL`]: https://en.wikipedia.org/wiki/CURL
+[curl vs Wget]: https://daniel.haxx.se/docs/curl-vs-wget.html
+[Data Science at the Command Line]: https://www.datascienceatthecommandline.com/
 [Learn Enough Command Line to be Dangerous]: https://www.learnenough.com/command-line-tutorial/basics
