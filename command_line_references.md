@@ -131,6 +131,54 @@ $ locate create_packtpub_products_list.sh
 /home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/create_packtpub_products_list.sh
 ```
 
+Combine multiple files together: `|`
+
+```bash
+# get file counts of all packtpub_products.html_* files
+$ cat packtpub_products.html_* | wc -l
+27078
+
+# look for all <h1 tags
+$ cat packtpub_products.html_* | grep -in '<h1'
+639:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+3277:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+5987:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+8737:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+11531:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+14301:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+16967:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+19674:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+22341:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+24979:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+```
+
+Re-directing output: `>`, `>>`
+
+Use `>` to over-write
+Use `>>` to append
+
+```bash
+# print to file
+$ echo 'hello world' > hello.txt
+
+$ cat hello.txt 
+hello world
+
+$ echo 'goodbye world' > hello.txt
+
+$ cat hello.txt 
+goodbye world
+
+$ echo 'hello world' > hello.txt
+
+$ echo 'goodbye world' >> hello.txt
+
+$ cat hello.txt 
+hello world
+goodbye world
+```
+
+
 ## Useful Tools
 
 `wc`: print newline, word, and byte counts for each file
@@ -166,6 +214,7 @@ $ head readme.md
     - [entr](#entr)
     - [CSVKit](#csvkit)
     - [jq](#jq)
+    - [rename](#rename)
 
 <!-- /MarkdownTOC -->
 ```
@@ -185,6 +234,110 @@ $ tail readme.md
 [Data Science at the Command Line]: https://www.datascienceatthecommandline.com/
 [Learn Enough Command Line to be Dangerous]: https://www.learnenough.com/command-line-tutorial/basics
 ```
+
+`seq`: print a sequence of numbers
+
+```bash
+$ seq 10
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+```
+
+`date`: print or set the system date and time
+
+```bash
+$ date
+Mon 26 Aug 23:07:57 PDT 2019
+
+$ date +"%F"
+2019-08-26
+
+$ date +"%Y-%M-%d %H-%m-%S %z"
+2019-08-26 23-08-38 -0700
+
+$ date +"%Y-%M-%d %H-%m-%S %Z"
+2019-08-26 23-08-41 PDT
+```
+
+`read`: read from a file descriptor
+
+```bash
+file_name="readme.md"
+
+while read -r line
+do
+    echo $line
+done <<< "$file_name"
+```
+
+`truncate`: shink or extend the size of a file to the specified size
+
+```bash
+# emtpy file.log
+$ truncate --size=0 file.log 
+```
+
+`xargs`: build and execute command lines from standard input
+
+```bash
+$ search_files="/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html*"
+ 
+$ echo "$search_files"
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html*
+
+# search files expanded
+$ echo $search_files 
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_10
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_2
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_3
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_4
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_5
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_6
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_7
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_8
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_9
+
+# result of grep command
+$ grep -A1 'product-item-link' $search_files | head
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/data/what-s-new-in-tensorflow-2-0">
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-What&#039;s New in TensorFlow 2.0 </a>
+--
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/uncategorized/ux-lifecycle">
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-UX Lifecycle </a>
+--
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/business-other/the-bdd-books-discovery">
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-The BDD Books - Discovery </a>
+--
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/business-other/microsoft-dynamics-365-business-central-cookbook">
+
+
+# xargs allows us to take and reformat the output of grep command
+$ grep -A1 'product-item-link' $search_files | xargs -n3 -d'\n' | head
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/data/what-s-new-in-tensorflow-2-0"> /home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-What&#039;s New in TensorFlow 2.0 </a> --
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/uncategorized/ux-lifecycle"> /home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-UX Lifecycle </a> --
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/business-other/the-bdd-books-discovery"> /home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-The BDD Books - Discovery </a> --
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/business-other/microsoft-dynamics-365-business-central-cookbook"> /home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-Microsoft Dynamics 365 Business Central Cookbook </a> --
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/programming/mastering-visual-studio-2019-second-edition"> /home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-Mastering Visual Studio 2019 - Second Edition </a> --
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/cloud-networking/mastering-gitlab-12"> /home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-Mastering GitLab 12 </a> --
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/uncategorized/mastering-blockchain-programming-with-solidity"> /home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-Mastering Blockchain Programming with Solidity </a> --
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1: <a class="product-item-link" href="https://www.packtpub.com/cloud-networking/mastering-active-directory-second-edition"> /home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-Mastering Active Directory - Second Edition </a> --
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/big-data-and-business-intelligence/hands-deep-learning-go"> /home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-Hands-On Deep Learning with Go </a> --
+/home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1:<a class="product-item-link" href="https://www.packtpub.com/data/hands-on-artificial-intelligence-for-cybersecurity"> /home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/downloads/packtpub_products.html_1-Hands-On Artificial Intelligence for Cybersecurity </a> --
+...
+
+# in actual script, save it to variable
+all_products=$(grep -A1 'product-item-link' $search_files | xargs -n3 -d'\n')
+```
+
 
 ## Text Search & Processing
 
@@ -256,8 +409,8 @@ $ jq -r '.[] | [._id, .age] | @tsv' file1.json | column -t
 
 There are a couple of tools we can use to grab data from the web.
 
-- [`Wget`]
-- [`cURL`]
+[`Wget`]: The non-interactive network downloader
+[`cURL`]: transfer a URL
 
 For a comparison, please take a look at [curl vs Wget].
 
@@ -267,7 +420,7 @@ These are tools we will cover that do not pre-installed on Ubuntu, which is what
 
 ### entr
 
-`entr`: run arbitrary commands when files change (Need to install)
+[`entr`]: run arbitrary commands when files change (Need to install)
 
 ```bash
 $ echo get_packtpub_products_pages.sh | entr -c bash get_packtpub_products_pages.sh
@@ -275,7 +428,7 @@ $ echo get_packtpub_products_pages.sh | entr -c bash get_packtpub_products_pages
 
 ### CSVKit
 
-[csvkit] is a _suite of command-line tools for converting to and working with CSV, the king of tabular file formats_.
+[`csvkit`] is a _suite of command-line tools for converting to and working with CSV, the king of tabular file formats_.
 
 - **csvstack**: for stacking rows from multiple CSV files.
 - **csvlook**: renders CSV in pretty table format
@@ -287,11 +440,94 @@ $ echo get_packtpub_products_pages.sh | entr -c bash get_packtpub_products_pages
 
 [`jq`] is a lightweight and flexible command-line JSON processor.
 
+```bash
+$ jq . file.json
+[
+  {
+    "_id": "5d64c0dda4a2d985f9cb441c",
+    "index": 0,
+    "guid": "e86d8a89-8da1-401c-a4ec-88104675be23",
+    "isActive": true,
+    "balance": "$3,531.95",
+    "picture": "http://placehold.it/32x32",
+    "age": 27,
+    "eyeColor": "brown",
+...
+      },
+      {
+        "id": 2,
+        "name": "Hodges Velez"
+      }
+    ],
+    "greeting": "Hello, Hickman! You have 5 unread messages.",
+    "favoriteFruit": "banana"
+  }
+]
+```
+
+### rename
+
+[`rename`]: renames multiple files
+
+Rename multiple \*md\* files into \*html\* files:
+
+```bash
+$ ll
+total 6244
+drwxrwxr-x 2 johannes johannes   4096 Aug 26 23:01 ./
+drwxrwxr-x 4 johannes johannes   4096 Aug 26 22:59 ../
+-rw-rw-r-- 1 johannes johannes   5061 Aug 18 12:39 all_product_titles.txt
+-rw-rw-r-- 1 johannes johannes 631093 Aug 20 18:44 packtpub_products.md_1
+-rw-rw-r-- 1 johannes johannes 636387 Aug 20 18:44 packtpub_products.md_10
+-rw-rw-r-- 1 johannes johannes 637153 Aug 20 18:44 packtpub_products.md_2
+-rw-rw-r-- 1 johannes johannes 639204 Aug 20 18:44 packtpub_products.md_3
+-rw-rw-r-- 1 johannes johannes 638031 Aug 20 18:44 packtpub_products.md_4
+-rw-rw-r-- 1 johannes johannes 634188 Aug 20 18:44 packtpub_products.md_5
+-rw-rw-r-- 1 johannes johannes 635189 Aug 20 18:44 packtpub_products.md_6
+-rw-rw-r-- 1 johannes johannes 634101 Aug 20 18:44 packtpub_products.md_7
+-rw-rw-r-- 1 johannes johannes 632743 Aug 20 18:44 packtpub_products.md_8
+-rw-rw-r-- 1 johannes johannes 636621 Aug 20 18:44 packtpub_products.md_9
+
+# dry run to verify correct name change
+$ rename -n 's/md/html/' *md*
+rename(packtpub_products.md_1, packtpub_products.html_1)
+rename(packtpub_products.md_10, packtpub_products.html_10)
+rename(packtpub_products.md_2, packtpub_products.html_2)
+rename(packtpub_products.md_3, packtpub_products.html_3)
+rename(packtpub_products.md_4, packtpub_products.html_4)
+rename(packtpub_products.md_5, packtpub_products.html_5)
+rename(packtpub_products.md_6, packtpub_products.html_6)
+rename(packtpub_products.md_7, packtpub_products.html_7)
+rename(packtpub_products.md_8, packtpub_products.html_8)
+rename(packtpub_products.md_9, packtpub_products.html_9)
+
+# make name change
+$ rename 's/md/html/' *md*
+ 
+# verify name change
+$ ll
+total 6244
+drwxrwxr-x 2 johannes johannes   4096 Aug 26 23:01 ./
+drwxrwxr-x 4 johannes johannes   4096 Aug 26 22:59 ../
+-rw-rw-r-- 1 johannes johannes   5061 Aug 18 12:39 all_product_titles.txt
+-rw-rw-r-- 1 johannes johannes 631093 Aug 20 18:44 packtpub_products.html_1
+-rw-rw-r-- 1 johannes johannes 636387 Aug 20 18:44 packtpub_products.html_10
+-rw-rw-r-- 1 johannes johannes 637153 Aug 20 18:44 packtpub_products.html_2
+-rw-rw-r-- 1 johannes johannes 639204 Aug 20 18:44 packtpub_products.html_3
+-rw-rw-r-- 1 johannes johannes 638031 Aug 20 18:44 packtpub_products.html_4
+-rw-rw-r-- 1 johannes johannes 634188 Aug 20 18:44 packtpub_products.html_5
+-rw-rw-r-- 1 johannes johannes 635189 Aug 20 18:44 packtpub_products.html_6
+-rw-rw-r-- 1 johannes johannes 634101 Aug 20 18:44 packtpub_products.html_7
+-rw-rw-r-- 1 johannes johannes 632743 Aug 20 18:44 packtpub_products.html_8
+-rw-rw-r-- 1 johannes johannes 636621 Aug 20 18:44 packtpub_products.html_9
+```
 
 [//]: # (References)
 
 [`Wget`]: https://en.wikipedia.org/wiki/Wget
 [`cURL`]: https://en.wikipedia.org/wiki/CURL
 [curl vs Wget]: https://daniel.haxx.se/docs/curl-vs-wget.html
-[csvkit]: https://csvkit.readthedocs.io/en/latest/
+[`entr`]: http://eradman.com/entrproject/
+[`csvkit`]: https://csvkit.readthedocs.io/en/latest/
 [`jq`]: https://stedolan.github.io/jq/
+[`rename`]: https://www.cyberciti.biz/faq/linux-rename-file/
