@@ -1,5 +1,17 @@
 #!/bin/bash
 
+#################################################################################
+#
+# Download desired number of packtpub product pages
+# to specified sub-directory
+#
+# Websites:
+# ---------
+# https://www.packtpub.com/all-products
+# https://www.packtpub.com/all-products&page=2
+#
+#################################################################################
+
 echo -e "\nScript Start"
 
 
