@@ -78,6 +78,7 @@ $ which jq
 ## Resources
 
 - [Crontab Guru]
+- [Explain Shell]
 - [Data Science at the Command Line]
 - [Learn Enough Command Line to be Dangerous]
 - [Random JSON Generator]
@@ -92,3 +93,4 @@ $ which jq
 [Learn Enough Command Line to be Dangerous]: https://www.learnenough.com/command-line-tutorial/basics
 [Random JSON Generator]: https://next.json-generator.com/
 [Crontab Guru]: https://crontab.guru/
+[Explain Shell]: https://explainshell.com/
