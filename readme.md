@@ -2,9 +2,9 @@
 
 <!-- MarkdownTOC -->
 
-- [Set up System](#set-up-system)
-- [Grabbing Data from the Web](#grabbing-data-from-the-web)
-- [Resources](#resources)
+- [Command Line Introduction](#command-line-introduction)
+  - [Set up System](#set-up-system)
+  - [Resources](#resources)
 
 <!-- /MarkdownTOC -->
 
@@ -35,6 +35,12 @@ $ sudo su
 
 # install csvkit
 $ sudo pip3 install csvkit -y
+
+# install entr
+$ sudo apt install entr -y
+
+# install jq
+$ sudo apt install jq -y
 ```
 
 Confirm the installations worked:
@@ -58,18 +64,15 @@ $ ll -tr /usr/local/bin/csv*
 -rwxr-xr-x 1 root root 383 Jul  7 14:12 /usr/local/bin/csvformat
 -rwxr-xr-x 1 root root 377 Jul  7 14:12 /usr/local/bin/csvcut
 -rwxr-xr-x 1 root root 381 Jul  7 14:12 /usr/local/bin/csvclean
+
+# verify entr was installed correctly
+$ which entr
+/usr/bin/entr
+
+# verify jq was installed correctly
+$ which jq
+/usr/bin/jq
 ```
-
-
-<a id="grabbing-data-from-the-web"></a>
-## Grabbing Data from the Web
-
-There are a couple of tools we can use to grab data from the web.
-
-- [`Wget`]
-- [`cURL`]
-
-For a comparison, please take a look at [curl vs Wget].
 
 <a id="resources"></a>
 ## Resources
