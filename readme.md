@@ -77,8 +77,10 @@ $ which jq
 <a id="resources"></a>
 ## Resources
 
+- [Crontab Guru]
 - [Data Science at the Command Line]
 - [Learn Enough Command Line to be Dangerous]
+- [Random JSON Generator]
 
 [//]: # (References)
 
@@ -86,8 +88,7 @@ $ which jq
 [Learn Enough Command Line - 1.1 Introduction]: https://www.learnenough.com/command-line-tutorial/basics#sec-introduction
 [VirtualBox]: https://www.virtualbox.org/
 [Learn Enough Virtual Machine]: https://softcover-static.s3.amazonaws.com/LearnEnough-v.1.4.ova
-[`Wget`]: https://en.wikipedia.org/wiki/Wget
-[`cURL`]: https://en.wikipedia.org/wiki/CURL
-[curl vs Wget]: https://daniel.haxx.se/docs/curl-vs-wget.html
 [Data Science at the Command Line]: https://www.datascienceatthecommandline.com/
 [Learn Enough Command Line to be Dangerous]: https://www.learnenough.com/command-line-tutorial/basics
+[Random JSON Generator]: https://next.json-generator.com/
+[Crontab Guru]: https://crontab.guru/
