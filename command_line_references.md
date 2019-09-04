@@ -131,6 +131,25 @@ $ locate create_packtpub_products_list.sh
 /home/johannes/Documents/school_of_ai_vancouver/intro_to_commandline/create_packtpub_products_list.sh
 ```
 
+Concate and print files: `cat`
+
+```bash
+$ cat /etc/passwd
+##
+# User Database
+#
+# Note that this file is consulted directly only when the system is running
+# in single-user mode.  At other times this information is provided by
+# Open Directory.
+#
+# See the opendirectoryd(8) man page for additional information about
+# Open Directory.
+##
+nobody:*:-2:-2:Unprivileged User:/var/empty:/usr/bin/false
+root:*:0:0:System Administrator:/var/root:/bin/sh
+daemon:*:1:1:System Services:/var/root:/usr/bin/false
+```
+
 Combine multiple files together: `|`
 
 ```bash
@@ -150,6 +169,13 @@ $ cat packtpub_products.html_* | grep -in '<h1'
 19674:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
 22341:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
 24979:<h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+```
+
+Read large files: `less` or `more`
+
+```bash
+# able to see all the packtpub_products.html_ files as one huge file we can scroll up and down through
+$ cat packtpub_products.html_* | less
 ```
 
 Re-directing output: `>`, `>>`
