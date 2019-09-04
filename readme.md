@@ -21,6 +21,8 @@ To ensure consistency, let's install the virtual machine from the [Learn Enough 
 3. Once the download is complete, double-click the resulting “OVA” file and follow the instructions to install the Virtual Machine (VM).
 4. Double-click the VM itself and log in using the default user’s password, which is “`foobar!`”.
 
+The instructions below are for Linux based systems. If you are running Windows Subsystem for Linux on Windows 10, you should be able to run the same commands. Mac users may have to use alternatives like brew to install these packages.
+
 Once set up, open the `Terminal` application and run the following commands. You will be prompted for the password:
 
 ```bash
